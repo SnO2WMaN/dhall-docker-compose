@@ -73,8 +73,8 @@ let Healthcheck =
 let ComposeConfig =
         { version = "3"
         , services = None types.Services
-        , networks = None types.Networks
-        , volumes = None types.Volumes
+        , networks = None types.TopLevelNetworks
+        , volumes = None types.TopLevelVolumes
         }
       : types.ComposeConfig
 

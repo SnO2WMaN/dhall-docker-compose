@@ -156,12 +156,26 @@ let Services
     : Type
     = Map Text Service
 
+let TopLevelVolume = Volume
+
+let TopLevelVolumes
+    : Type
+    = Map Text (Optional TopLevelVolume)
+
+let TopLevelNetwork
+    : Type
+    = {}
+
+let TopLevelNetworks
+    : Type
+    = Map Text (Optional TopLevelNetwork)
+
 let ComposeConfig
     : Type
     = { version : Text
       , services : Optional Services
-      , networks : Optional Networks
-      , volumes : Optional Volumes
+      , networks : Optional TopLevelNetworks
+      , volumes : Optional TopLevelVolumes
       }
 
 in  { ComposeConfig
@@ -182,5 +196,5 @@ in  { ComposeConfig
     , Options
     , DriverOpts
     , Ipam
-    , External
+    , External,TopLevelNetwork,TopLevelNetworks,TopLevelVolumes
     }

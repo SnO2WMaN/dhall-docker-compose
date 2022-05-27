@@ -87,12 +87,16 @@ let Output
     = Entry Text (Optional Compose.Volume.Type)
 
 let volumes
-    : Compose.Volumes
+    : Compose.TopLevelVolumes
     = map
         Text
         Output
         toEntry
         [ "pgdata", "django-static-files", "react-static-files" ]
+
+let networks
+    : Compose.TopLevelNetworks
+    = toMap { test = Some {=} }
 
 let services
     : Compose.Services
@@ -103,4 +107,8 @@ let services
         , django = djangoService
         }
 
-in  Compose.Config::{ services = Some services, volumes = Some volumes }
+in  Compose.Config::{
+    , services = Some services
+    , volumes = Some volumes
+    , networks = Some networks
+    }

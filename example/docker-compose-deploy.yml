@@ -1,3 +1,5 @@
+networks:
+  test: {}
 services:
   db:
     command:
