@@ -78,6 +78,10 @@ let Deploy
       , placement : { constraints : List Text }
       }
 
+let DependsOn
+    : Type = < Short : List Text | Long : Map Text { condition : Text } >
+
+
 let Service
     : Type
     = { deploy : Optional Deploy
@@ -87,7 +91,7 @@ let Service
       , cgroup_parent : Optional Text
       , command : Optional StringOrList
       , container_name : Optional Text
-      , depends_on : Optional (List Text)
+      , depends_on : Optional DependsOn
       , devices : Optional (List Text)
       , dns : Optional StringOrList
       , dns_search : Optional (List Text)
@@ -193,7 +197,7 @@ in  { ComposeConfig
     , Ulimits
     , Volumes
     , Volume
-    , Options
+    , Options,DependsOn
     , DriverOpts
     , Ipam
     , External,TopLevelNetwork,TopLevelNetworks,TopLevelVolumes
