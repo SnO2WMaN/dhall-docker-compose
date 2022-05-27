@@ -81,6 +81,8 @@ let Deploy
 let DependsOn
     : Type = < Short : List Text | Long : Map Text { condition : Text } >
 
+let Ports
+    : Type = < Short : List StringOrNumber | Long : List { published : StringOrNumber, target : StringOrNumber } >
 
 let Service
     : Type
@@ -113,7 +115,7 @@ let Service
       , network_mode : Optional Text
       , networks : Optional Networks
       , pid : Optional Text
-      , ports : Optional (List StringOrNumber)
+      , ports : Optional Ports
       , privileged : Optional Bool
       , read_only : Optional Bool
       , restart : Optional Text
@@ -197,7 +199,7 @@ in  { ComposeConfig
     , Ulimits
     , Volumes
     , Volume
-    , Options,DependsOn
+    , Options,DependsOn,Ports
     , DriverOpts
     , Ipam
     , External,TopLevelNetwork,TopLevelNetworks,TopLevelVolumes
