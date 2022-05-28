@@ -7,7 +7,7 @@ let StringOrNumber
 
 let ListOrDict
     : Type
-    = < Dict : Map Text Text | List : List (Optional StringOrNumber) >
+    = < Dict : Map Text StringOrNumber | List : List (Optional StringOrNumber) >
 
 let Build
     : Type
@@ -84,6 +84,8 @@ let DependsOn
 let Ports
     : Type = < Short : List StringOrNumber | Long : List { published : StringOrNumber, target : StringOrNumber } >
 
+let Environment : Type = < Dict : Map Text StringOrNumber | List : List (Optional StringOrNumber) >
+
 let Service
     : Type
     = { deploy : Optional Deploy
@@ -100,7 +102,7 @@ let Service
       , domainname : Optional Text
       , entrypoint : Optional StringOrList
       , env_file : Optional StringOrList
-      , environment : Optional ListOrDict
+      , environment : Optional Environment
       , expose : Optional (List StringOrNumber)
       , external_links : Optional (List Text)
       , extra_hosts : Optional ListOrDict
@@ -198,7 +200,7 @@ in  { ComposeConfig
     , Networks
     , Ulimits
     , Volumes
-    , Volume
+    , Volume,Environment
     , Options,DependsOn,Ports
     , DriverOpts
     , Ipam
