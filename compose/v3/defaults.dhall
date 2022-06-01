@@ -4,7 +4,7 @@ let Map =
 let types = ./types.dhall
 
 let Service =
-        { deploy = None types.Deploy
+        { deploy = None types.Deploy 
         , build = None types.Build
         , cap_add = None (List Text)
         , cap_drop = None (List Text)
@@ -53,6 +53,13 @@ let Service =
         }
       : types.Service
 
+let Build =
+        { context = None Text
+        , dockerfile = None Text 
+        , args = None types.BuildArgs
+        }: types.Build 
+      
+
 let Volume =
         { driver = None Text
         , driver_opts = None types.DriverOpts
@@ -78,4 +85,4 @@ let ComposeConfig =
         }
       : types.ComposeConfig
 
-in  { Service, Volume, ComposeConfig, Healthcheck }
+in  { Service, Build,Volume, ComposeConfig, Healthcheck }

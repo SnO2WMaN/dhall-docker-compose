@@ -9,11 +9,12 @@ let ListOrDict
     : Type
     = < Dict : Map Text StringOrNumber | List : List (Optional StringOrNumber) >
 
+let BuildArgs : Type = < Dict : Map Text StringOrNumber | List : List (Optional StringOrNumber) >
+
 let Build
     : Type
-    = < String : Text
-      | Object : { context : Text, dockerfile : Text }
-      >
+    =  { context : Optional Text, dockerfile : Optional Text ,args: Optional BuildArgs}
+      
 
 let StringOrList
     : Type
@@ -191,7 +192,7 @@ in  { ComposeConfig
     , Service
     , StringOrNumber
     , Deploy
-    , Build
+    , Build,BuildArgs
     , StringOrList
     , ListOrDict
     , Healthcheck
